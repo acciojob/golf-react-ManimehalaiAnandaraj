@@ -43,7 +43,7 @@ class App extends React.Component {
         {this.state.isGameStarted && (
           <div
             className="ball"
-            style={{ left: `${this.state.ballPosition}px` }}
+            style={{ right: `${this.state.ballPosition}px` }}
           />
         )}
       </div>
