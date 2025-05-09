@@ -1,55 +1,54 @@
-import React, { Component } from "react";
-import '../styles/App.css';
+import React from 'react';
 
-class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            renderBall: false,
-            posi: 0,
-            ballPosition: { left: "0px" }
-        };
-        this.renderChoice = this.renderBallOrButton.bind(this);
-        this.buttonClickHandler = this.buttonClickHandler.bind(this);
-        this.handleKeyDown = this.handleKeyDown.bind(this);
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isGameStarted: false,
+      ballPosition: 0
     };
+    this.handleStart = this.handleStart.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+  }
 
-    buttonClickHandler() {
-        this.setState({ renderBall: true });
-        document.addEventListener("keydown", this.handleKeyDown);
-    }
+  componentDidMount() {
+    window.addEventListener('keydown', this.handleKeyPress);
+  }
 
-    handleKeyDown(event) {
-        if (event.key === "ArrowRight") {
-            this.setState(prevState => {
-                const newPos = prevState.posi + 10; // Move 10px to the right
-                return {
-                    posi: newPos,
-                    ballPosition: { left: `${newPos}px` }
-                };
-            });
-        }
-    }
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.handleKeyPress);
+  }
 
-    componentWillUnmount() {
-        document.removeEventListener("keydown", this.handleKeyDown);
-    }
+  handleStart() {
+    this.setState({ isGameStarted: true });
+  }
 
-    renderBallOrButton() {
-        if (this.state.renderBall) {
-            return <div className="ball" style={this.state.ballPosition}></div>
-        } else {
-            return <button onClick={this.buttonClickHandler}>Start</button>
-        }
+  handleKeyPress(event) {
+    if (this.state.isGameStarted && event.keyCode === 39) {
+      this.setState(prevState => ({
+        ballPosition: prevState.ballPosition + 5
+      }));
     }
+  }
 
-    render() {
-        return (
-            <div className="playground">
-                {this.renderBallOrButton()}
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        {!this.state.isGameStarted && (
+          <button className="start" onClick={this.handleStart}>
+            Start
+          </button>
+        )}
+        {this.state.isGameStarted && (
+          <div
+            className="ball"
+            style={{ left: `${this.state.ballPosition}px` }}
+          />
+        )}
+      </div>
+    );
+  }
 }
 
 export default App;
