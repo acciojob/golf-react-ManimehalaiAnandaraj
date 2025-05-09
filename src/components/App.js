@@ -1,7 +1,7 @@
 import React from 'react';
 
-
-class App extends React.Component {
+class App extends React.Component
+ {
   constructor(props) {
     super(props);
     this.state = {
@@ -37,13 +37,13 @@ class App extends React.Component {
       <div>
         {!this.state.isGameStarted && (
           <button className="start" onClick={this.handleStart}>
-            Start
+            Start Game
           </button>
         )}
         {this.state.isGameStarted && (
           <div
             className="ball"
-            style={{ right: `${this.state.ballPosition}px` }}
+            style={{ left: `${this.state.ballPosition}px` }}
           />
         )}
       </div>

@@ -7,7 +7,7 @@
   .ball {
     width: 20px;
     height: 20px;
-    background-color: #ffffff;
+    background-color: red;
     border-radius: 50%;
     position: absolute;
     transition: left 0.1s ease;
