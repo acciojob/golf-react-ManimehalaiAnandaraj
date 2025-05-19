@@ -1,14 +1,37 @@
+.golf-game {
+  position: relative;
+  height: 200px;
+  width: 100%;
+  border: 1px solid #ccc;
+  margin: 20px;
+}
+
 .start {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  .ball {
-    width: 20px;
-    height: 20px;
-    background-color: red;
-    border-radius: 50%;
-    position: absolute;
-    transition: left 0.1s ease;
-  }
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.start:hover {
+  background-color: #d64c0c;
+}
+
+.ball {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  border-radius: 50%;
+  border: 2px solid #333;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+}
